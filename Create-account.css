@@ -1,0 +1,554 @@
+
+/* ==========================================================
+   AcadX | Create Account
+   Matching Login Page Design
+   ========================================================== */
+
+:root {
+    --green-900: #064c32;
+    --green-700: #0a6b45;
+    --green-500: #009a5e;
+    --green-600: #00844f;
+    --green-50: #eef8f2;
+    --yellow: #ffc619;
+    --red: #d93a3a;
+
+    --ink: #1f2a24;
+    --muted: #5f6b64;
+    --line: #d9e0db;
+    --error: #c62828;
+    --bg: #ffffff;
+
+    --radius-field: 14px;
+    --radius-card: 22px;
+
+    --font: "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Reset ---------- */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Accessible labels ---------- */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* ---------- Background decorations ---------- */
+
+.deco {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.deco-top {
+    top: -120px;
+    left: -110px;
+    width: 340px;
+    height: 240px;
+    background: var(--green-700);
+    border-radius: 0 0 100% 0;
+    transform: rotate(-8deg);
+}
+
+.deco-top::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--green-500);
+    border-radius: inherit;
+    transform: translate(34px, 24px) scale(.88);
+    opacity: .55;
+}
+
+.deco-bottom {
+    right: -60px;
+    bottom: -70px;
+    width: 460px;
+    height: 150px;
+    background:
+        radial-gradient(ellipse at 30% 100%, var(--red) 0 38%, transparent 39%),
+        radial-gradient(ellipse at 62% 100%, var(--yellow) 0 34%, transparent 35%),
+        radial-gradient(ellipse at 90% 100%, var(--green-500) 0 38%, transparent 39%);
+}
+
+/* ---------- Main layout ---------- */
+
+.page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+.form-side {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------- Form card ---------- */
+
+.form-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 34px 32px 28px;
+    background: #ffffff;
+    border: 1px solid #e8ece9;
+    border-radius: var(--radius-card);
+    box-shadow: 0 18px 50px -20px rgba(6, 76, 50, .25);
+}
+
+/* ---------- Header ---------- */
+
+.form-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.brand {
+    margin-bottom: 12px;
+    color: var(--green-900);
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.brand span {
+    color: var(--green-500);
+}
+
+.form-header h1 {
+    color: var(--green-900);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.subtitle {
+    margin: 8px auto 0;
+    max-width: 32ch;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+/* ---------- Input fields ---------- */
+
+.field {
+    margin-bottom: 14px;
+}
+
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 50px;
+    padding: 0 16px;
+    background: #ffffff;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-field);
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.input-box:hover {
+    border-color: #b9c6be;
+}
+
+.input-box:focus-within {
+    border-color: var(--green-500);
+    box-shadow: 0 0 0 4px rgba(0, 154, 94, .15);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    fill: var(--green-700);
+}
+
+.input-box input,
+.input-box select {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+.input-box input::placeholder {
+    color: #7b877f;
+    opacity: 1;
+}
+
+/* ---------- Grade dropdown ---------- */
+
+.select-box select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 28px;
+}
+
+.select-box select:invalid {
+    color: #7b877f;
+}
+
+.select-box select option {
+    color: var(--ink);
+}
+
+.chevron {
+    position: absolute;
+    right: 16px;
+    width: 18px;
+    height: 18px;
+    color: var(--green-900);
+    pointer-events: none;
+}
+
+/* ---------- Password visibility ---------- */
+
+.toggle-password {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    margin-right: -6px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.toggle-password:hover {
+    background: var(--green-50);
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid var(--green-500);
+    outline-offset: 2px;
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--muted);
+}
+
+.toggle-password .eye-closed {
+    display: none;
+}
+
+.toggle-password.is-visible .eye-open {
+    display: none;
+}
+
+.toggle-password.is-visible .eye-closed {
+    display: block;
+}
+
+/* ---------- Hints and validation ---------- */
+
+.hint {
+    margin: 6px 4px 0;
+    font-size: 11.5px;
+    color: var(--muted);
+}
+
+.error-msg {
+    display: none;
+    margin: 6px 4px 0;
+    font-size: 11.5px;
+    color: var(--error);
+}
+
+.field.invalid .error-msg {
+    display: block;
+}
+
+.field.invalid .hint {
+    display: none;
+}
+
+.field.invalid .input-box {
+    border-color: var(--error);
+}
+
+.field.invalid .input-box:focus-within {
+    box-shadow: 0 0 0 4px rgba(198, 40, 40, .12);
+}
+
+/* ---------- Terms and conditions ---------- */
+
+.terms-field {
+    margin-top: 4px;
+    margin-bottom: 18px;
+}
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.terms input {
+    appearance: none;
+    -webkit-appearance: none;
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    margin-top: 2px;
+    border: 1.5px solid #a9b8ae;
+    border-radius: 5px;
+    background: #ffffff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+.terms input::after {
+    content: "";
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: translateY(-1px) rotate(-45deg) scale(0);
+    transition: transform .12s ease;
+}
+
+.terms input:checked {
+    background: var(--green-500);
+    border-color: var(--green-500);
+}
+
+.terms input:checked::after {
+    transform: translateY(-1px) rotate(-45deg) scale(1);
+}
+
+.terms input:focus-visible {
+    outline: 3px solid rgba(0, 154, 94, .35);
+    outline-offset: 2px;
+}
+
+.terms a {
+    color: var(--green-700);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background .15s ease,
+        transform .1s ease,
+        box-shadow .15s ease,
+        border-color .15s ease;
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(0, 154, 94, .4);
+    outline-offset: 2px;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* Primary button */
+
+.btn-primary {
+    margin-top: 2px;
+    border: none;
+    background: var(--green-500);
+    color: #ffffff;
+    box-shadow: 0 8px 18px -8px rgba(0, 154, 94, .7);
+}
+
+.btn-primary:hover {
+    background: var(--green-600);
+}
+
+/* Google button */
+
+.btn-google {
+    border: 1.5px solid var(--line);
+    background: #ffffff;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.btn-google:hover {
+    border-color: #b9c6be;
+    background: #f8faf9;
+}
+
+.google-icon {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+}
+
+/* ---------- Divider ---------- */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 17px 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+/* ---------- Login link ---------- */
+
+.switch-page {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+}
+
+.switch-page a {
+    color: var(--green-900);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.switch-page a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Responsive design ---------- */
+
+@media (max-width: 600px) {
+    .page {
+        padding: 35px 16px;
+    }
+
+    .form-card {
+        max-width: 460px;
+        padding: 30px 24px 25px;
+    }
+
+    .form-header h1 {
+        font-size: 27px;
+    }
+
+    .deco-top {
+        width: 240px;
+        height: 170px;
+    }
+
+    .deco-bottom {
+        width: 320px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 400px) {
+    .page {
+        padding: 25px 12px;
+    }
+
+    .form-card {
+        padding: 25px 17px 22px;
+        border-radius: 18px;
+    }
+
+    .form-header h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .input-box {
+        height: 48px;
+        padding: 0 13px;
+    }
+
+    .terms {
+        font-size: 11px;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
